@@ -11,8 +11,7 @@
 HACKABLE CIVIL DEFENSE SIREN POF
 COPYRIGHT MAX WATERMOLEN 2017
 
-TESTED ON RASPBERRYPI B+ REV 1.2 (MODEL 1)
- 									***NOTE*** SHOULD WORK ON ALL REVISIONS ***NOTE*** 
+TESTED ON RASPBERRYPI B+ REV 1.2 (MODEL 1) 	***NOTE*** SHOULD WORK ON ALL REVISIONS ***NOTE*** 
 
 NEEDS: 
 	H/W: Adafruit DRV8871 Brushed DC Motor Driver Breakout - https://learn.adafruit.com/adafruit-drv8871-brushed-dc-motor-driver-breakout/overview 
@@ -80,7 +79,7 @@ Install: curl -o installer.sh https://raw.githubusercontent.com/melona380/Raspbe
 //RASPBERRYPI OPTIONS
 #define PWM_PIN 					1			//PWM PIN ON PI 				***NOTE*** ON REV 1 BOARDS USE 1 AS THIS IS BCM PIN 18 ***NOTE***
 
-char dtmf_string[5];							//DTMF CHARS CAPTURED
+char dtmf_string[CODE_LENGHT + 1];							//DTMF CHARS CAPTURED
 int last_time = 0; 								//TIMESTAMP OF LAST DTMF TONE
 int dtmf_count = 0;								//NUMBER OF RECIVED DTMF CHARS
 
