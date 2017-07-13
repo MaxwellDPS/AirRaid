@@ -14,7 +14,15 @@ Proof of Concept Code to Build a Hackable Realistic Civil Defense Siren. To Demo
   - Multimon-ng
   - wiringPi
 
+### Development
 
+Want to contribute? Great!
+
+Decoding Code Needed For:
+- Two-tone sequential
+- EAS
+- POCSAG
+- Digital AFSK 
 
 ### Tech
 
@@ -28,11 +36,11 @@ And of course Raspberry Pi Civil Defense Siren itself is open source with a Publ
 
 ### Installation of Needed Software
 
-Auto
+#### Building From Single Command
 ```
 $ curl -o installer.sh https://github.com/melona380/Raspberry-Pi-Civil-Defense-Siren && chmod +x installer.sh && sudo ./installer.sh
 ```
-Manual
+#### Building From Source
 ```
 sudo apt-get update
 sudo apt-get upgrade -y
@@ -81,21 +89,8 @@ cd ~/wiringPi
 git pull origin
 cd ~/wiringPi
 ./build
-```
 
-### Development
-
-Want to contribute? Great!
-
-Decoding Code Needed For:
-- Two-tone sequential
-- EAS
-- POCSAG
-- Digital AFSK 
-- 
-#### Building From Source
-For production release:
-```sh
+sh
 mkdir siren
 cd siren
 git clone https://github.com/melona380/Raspberry-Pi-Civil-Defense-Siren.git
