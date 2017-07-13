@@ -103,7 +103,7 @@ sudo ln -s /opt/rpiSiren/AirRaid /usr/local/bin
 
 #### Running
 ```
-$ sudo rpiServer
+$ sudo AirRaid
 ```
 License
 ----
