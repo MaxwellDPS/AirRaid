@@ -90,7 +90,6 @@ git pull origin
 cd ~/wiringPi
 ./build
 
-sh
 mkdir siren
 cd siren
 git clone https://github.com/melona380/Raspberry-Pi-Civil-Defense-Siren.git
