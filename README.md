@@ -39,7 +39,7 @@ And of course Raspberry Pi Civil Defense Siren itself is open source with a Publ
 
 #### Building From Single Command
 ```
-$ curl -o installer.sh https://github.com/MaxwellDPS/AirRaid && chmod +x installer.sh && sudo ./installer.sh
+$ curl -o installer.sh https://raw.githubusercontent.com/MaxwellDPS/AirRaid/master/install.sh && chmod +x installer.sh && sudo ./installer.sh
 ```
 #### Building From Source
 ```
