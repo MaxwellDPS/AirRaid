@@ -91,10 +91,9 @@ git pull origin
 cd ~/wiringPi
 ./build
 
-mkdir siren
-cd siren
+cd ~/src
 git clone https://github.com/MaxwellDPS/AirRaid.git
-cd Raspberry-Pi-Civil-Defense-Siren
+cd AirRaid
 gcc -lpthread -lwiringPi -o rpiSiren siren.c
 sudo mkdir /opt/rpiSiren/
 sudo mv rpiSiren /opt/rpiSiren/rpiSiren
