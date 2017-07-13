@@ -44,6 +44,9 @@ PWM VALUES INFO AT 6VDC @ 2A:
 		595 For Growl
 		650 For LOW WAIL
 
+
+Install: curl -o installer.sh https://raw.githubusercontent.com/melona380/Raspberry-Pi-Civil-Defense-Siren/master/install.sh && chmod +x installer.sh && sudo ./installer.sh
+
 */
 
 //RTL_SDR OPTIONS
