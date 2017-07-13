@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # install :
-# curl -o installer.sh https://github.com/melona380/Raspberry-Pi-Civil-Defense-Siren && chmod +x installer.sh && sudo ./installer.sh
+# curl -o installer.sh https://raw.githubusercontent.com/melona380/Raspberry-Pi-Civil-Defense-Siren/master/install.sh && chmod +x installer.sh && sudo ./installer.sh
 
 sudo apt-get update
 sudo apt-get upgrade -y
