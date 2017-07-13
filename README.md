@@ -104,7 +104,7 @@ sudo ln -s /opt/rpiSiren/rpiSiren /usr/local/bin
 
 #### Running
 ```
-$ rpiServer
+$ sudo rpiServer
 ```
 License
 ----
