@@ -55,8 +55,8 @@ echo "INSTALLING AIRRAID..."
 cd ~/src
 git clone https://github.com/MaxwellDPS/AirRaid.git
 cd AirRaid
-gcc -lpthread -lwiringPi -o rpiSiren siren.c
+gcc -lpthread -lwiringPi -o AirRaid siren.c
 sudo mkdir /opt/rpiSiren/
-sudo mv rpiSiren /opt/rpiSiren/rpiSiren
-sudo chmod +x /opt/rpiSiren/rpiSiren
-sudo ln -s /opt/rpiSiren/rpiSiren /usr/local/bin
+sudo mv AirRaid /opt/rpiSiren/AirRaid
+sudo chmod +x /opt/rpiSiren/AirRaid
+sudo ln -s /opt/rpiSiren/AirRaid /usr/local/bin
