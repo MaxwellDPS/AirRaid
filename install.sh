@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # install :
-# curl -o installer.sh https://raw.githubusercontent.com/melona380/Raspberry-Pi-Civil-Defense-Siren/master/install.sh && chmod +x installer.sh && sudo ./installer.sh
+# curl -o installer.sh https://raw.githubusercontent.com/MaxwellDPS/AirRaid/master/install.sh && chmod +x installer.sh && sudo ./installer.sh
 
 sudo apt-get update
 sudo apt-get upgrade -y
@@ -51,11 +51,10 @@ git pull origin
 cd ~/wiringPi
 ./build
 
-echo "INSTALLING..."
-mkdir siren
-cd siren
-git clone https://github.com/melona380/Raspberry-Pi-Civil-Defense-Siren.git
-cd Raspberry-Pi-Civil-Defense-Siren
+echo "INSTALLING AIRRAID..."
+cd ~/src
+git clone https://github.com/MaxwellDPS/AirRaid.git
+cd AirRaid
 gcc -lpthread -lwiringPi -o rpiSiren siren.c
 sudo mkdir /opt/rpiSiren/
 sudo mv rpiSiren /opt/rpiSiren/rpiSiren
