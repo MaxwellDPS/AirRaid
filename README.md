@@ -1,4 +1,5 @@
-# Raspberry Pi Civil Defense Siren
+# AirRaid
+## Raspberry Pi Civil Defense Siren
 Proof of Concept Code to Build a Hackable Realistic Civil Defense Siren. To Demonstarate the vulerability in Millions of Real Civil Defense Sirens that work the same across the country 
 
 [![N|Solid](https://static.wixstatic.com/media/632ed1_fb9a3b5268b3477caea3a865bef54a7c.png/v1/fill/w_119,h_67,al_c,usm_0.50_1.20_0.00/632ed1_fb9a3b5268b3477caea3a865bef54a7c.png)](https://maxwelldps.com)
@@ -38,7 +39,7 @@ And of course Raspberry Pi Civil Defense Siren itself is open source with a Publ
 
 #### Building From Single Command
 ```
-$ curl -o installer.sh https://github.com/melona380/Raspberry-Pi-Civil-Defense-Siren && chmod +x installer.sh && sudo ./installer.sh
+$ curl -o installer.sh https://github.com/MaxwellDPS/AirRaid && chmod +x installer.sh && sudo ./installer.sh
 ```
 #### Building From Source
 ```
@@ -92,7 +93,7 @@ cd ~/wiringPi
 
 mkdir siren
 cd siren
-git clone https://github.com/melona380/Raspberry-Pi-Civil-Defense-Siren.git
+git clone https://github.com/MaxwellDPS/AirRaid.git
 cd Raspberry-Pi-Civil-Defense-Siren
 gcc -lpthread -lwiringPi -o rpiSiren siren.c
 sudo mkdir /opt/rpiSiren/
