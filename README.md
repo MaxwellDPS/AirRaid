@@ -96,7 +96,7 @@ git clone https://github.com/MaxwellDPS/AirRaid.git
 cd AirRaid
 gcc -lpthread -lwiringPi -o AirRaid siren.c
 sudo mkdir /opt/rpiSiren/
-sudo mv rpiSiren /opt/rpiSiren/AirRaid
+sudo mv AirRaid /opt/rpiSiren/AirRaid
 sudo chmod +x /opt/rpiSiren/AirRaid
 sudo ln -s /opt/rpiSiren/AirRaid /usr/local/bin
 ```
