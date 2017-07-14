@@ -88,12 +88,14 @@ int main(int argc, char *argv []) {
 	int *Cancel_Var = malloc(sizeof(int));		//PASSABLE SIREN DEAVTIVATION BOOLEAN
   	*Cancel_Var = 0;
 
+
   	if (wiringPiSetup () == -1){				//INTI PWM AND WIRING PI LIB
     	printf("FAULT");
    		exit (1);
  	 }
 
   	pinMode (PWM_PIN, PWM_OUTPUT);				//SET PIN TO PWM PIN 		***NOTE*** BESURE TO USE A H/W PWM GPIO PIN! ***NOTE***
+
 
 	FILE *in;									//INPUT FILE
 	extern FILE *popen();						
@@ -107,7 +109,7 @@ int main(int argc, char *argv []) {
   	strcat (cmd, SAMPLE_RATE);
   	strcat (cmd, " -p ");
   	strcat (cmd, PPM_ERROR);
-  	strcat (cmd, " 2>&1 | multimon-ng -a DTMF -t raw -  ");					  		//***NOTE*** THE 2>&1 FOLLOWING RTL_FM IS TO REDIRECT STDERR TO STDOUT TO PREVENT WRITING ALL OUTPUT TO SCREEN ***NOTE***
+  	strcat (cmd, " 2>&1 | multimon-ng -a DTMF -t raw - ");					  		//***NOTE*** THE 2>&1 FOLLOWING RTL_FM IS TO REDIRECT STDERR TO STDOUT TO PREVENT WRITING ALL OUTPUT TO SCREEN ***NOTE***
 
   																					//COMMAND: "rtl_fm -f 147480000 -s 22000 -p 0 2>&1 | multimon-ng -a DTMF -t raw - "
 
@@ -115,11 +117,11 @@ int main(int argc, char *argv []) {
 		exit(1);
 	}
 	
+
 	while(fgets(buff, sizeof(buff), in)!=NULL){										//PARSE RTL_FM STDOUT BUFFER
 		if (strstr(buff, "DTMF: ") != NULL) {										//CHECK FOR DTMF MULTIMON OUTPUT ie. DTMF: 5
 			char *dtmfchar = buff + 6;
  			DTMFhandel(dtmfchar, dtmf_count, (unsigned)time(NULL), Cancel_Var);		//HANDEL DTMF CHAR
-
 		}
 	}
 	
