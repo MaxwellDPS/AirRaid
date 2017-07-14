@@ -44,7 +44,6 @@ PWM VALUES INFO AT 6VDC @ 2A:
 		650 For LOW WAIL
 
 
-Install: curl -o installer.sh https://raw.githubusercontent.com/MaxwellDPS/AirRaid/master/install.sh && chmod +x installer.sh && sudo ./installer.sh
 
 */
 
