@@ -82,9 +82,9 @@ sudo apt-get purge wiringPi -y
 hash -r
 cd ~/src
 git clone git://git.drogon.net/wiringPi
-cd ~/wiringPi
+cd wiringPi
 git pull origin
-cd ~/wiringPi
+cd wiringPi
 ./build
 
 cd ~/src
