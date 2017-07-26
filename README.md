@@ -42,7 +42,7 @@ And of course Raspberry Pi Civil Defense Siren itself is open source with a Publ
 sudo apt-get update
 sudo apt-get upgrade -y
 sudo apt-get dist-upgrade -y
-sudo apt-get -y install git gcc cmake libusb-1.0-0-dev libpulse-dev libx11-dev screen qt4-qmake libtool autoconf automake libfftw3-dev
+sudo apt-get -y install git gcc cmake libusb-1.0-0-dev libpulse-dev libx11-dev screen qt5-default libtool autoconf automake libfftw3-dev
 
 mkdir ~/src
 
