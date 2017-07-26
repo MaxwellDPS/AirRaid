@@ -94,6 +94,12 @@ int main(int argc, char *argv []) {
  	 }
 
   	pinMode (PWM_PIN, PWM_OUTPUT);				//SET PIN TO PWM PIN 		***NOTE*** BESURE TO USE A H/W PWM GPIO PIN! ***NOTE***
+ 	pinMode (0, OUTPUT) ;
+ 	pinMode (2, OUTPUT) ;
+	pinMode (3, OUTPUT) ;
+
+    digitalWrite (2, HIGH);
+    digitalWrite (3, LOW);
 
 
 	FILE *in;									//INPUT FILE
@@ -120,7 +126,10 @@ int main(int argc, char *argv []) {
 	while(fgets(buff, sizeof(buff), in)!=NULL){										//PARSE RTL_FM STDOUT BUFFER
 		if (strstr(buff, "DTMF: ") != NULL) {										//CHECK FOR DTMF MULTIMON OUTPUT ie. DTMF: 5
 			char *dtmfchar = buff + 6;
+			digitalWrite (0, HIGH) ; 
  			DTMFhandel(dtmfchar, dtmf_count, (unsigned)time(NULL), Cancel_Var);		//HANDEL DTMF CHAR
+ 			delay(50);
+    		digitalWrite (0,  LOW) ;
 		}
 	}
 	
@@ -165,17 +174,20 @@ void DTMFcheck(char *dtmf, int *Cancel_Var){
 		*Cancel_Var = 1;
 		*Cancel_Var = 0;
 		SoundSiren(1, Cancel_Var);
+		digitalWrite (3, HIGH) ;
 	}else if(strcmp(dtmf,CODE_SIREN_ALERT) ==  0 ){									//CHECK FOR ALERT CODE
 		printf("Setting Sirens to ALERT\n");
 		*Cancel_Var = 1;
 		*Cancel_Var = 0;
 		SoundSiren(2, Cancel_Var);
+		digitalWrite (3, HIGH) ;
 	}else if(strcmp(dtmf, CODE_SIREN_ATTACK) ==  0 ){								//CHECK FOR ATTACK CODE
 		printf("Setting Sirens to ATTACK\n");
 		*Cancel_Var = 1;
 		*Cancel_Var = 0;
 		SoundSiren(3, Cancel_Var);
-	}	
+		digitalWrite (3, HIGH) ;
+	}
 }
 
 void CleanChar(char *var) {															//CHAR[] CLEARER									
@@ -193,6 +205,7 @@ void SirenStop(int cur){				//WIND SIREN DOWN TO CUFOFF THEN RESET PWM
       delay(1);
     }
     pwmWrite (PWM_PIN, 0);
+    digitalWrite (3,  LOW) ;
 }
 
 void* SirenGrowl(void *c){				//SOUND THE SIREN IN GROWL MODE
