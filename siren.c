@@ -10,17 +10,12 @@
 /*
 HACKABLE CIVIL DEFENSE SIREN POF
 COPYRIGHT MAX WATERMOLEN 2017
-
 TESTED ON RASPBERRYPI B+ REV 1.2 (MODEL 1) 	***NOTE*** SHOULD WORK ON ALL REVISIONS ***NOTE*** 
-
 NEEDS: 
 	H/W: Adafruit DRV8871 Brushed DC Motor Driver Breakout - https://learn.adafruit.com/adafruit-drv8871-brushed-dc-motor-driver-breakout/overview 
 	S/W: RTL_FM ; MULTIMON-NG ; WIRINGPI - TO OPPERATE
-
 INSTALL WITH ONE COMMAND: 
-
 OS RASPBERRIAN: 4.9.35+ #1014 Fri Jun 30 14:34:49 BST 2017 armv6l GNU/Linux
-
 processor       : 0
 model name      : ARMv6-compatible processor rev 7 (v6l)
 BogoMIPS        : 697.95
@@ -30,11 +25,9 @@ CPU architecture: 7
 CPU variant     : 0x0
 CPU part        : 0xb76
 CPU revision    : 7
-
 Hardware        : BCM2835
 Revision        : 0010
 Serial          : #############
-
 PWM VALUES INFO AT 6VDC @ 2A:
 	PWM IS ON A SCALE OF 1 TO 1024... 
 		OUR PWM MOTOR CONTROLER ONLY RESPONDS ONCE WE GET >= 550
@@ -42,9 +35,6 @@ PWM VALUES INFO AT 6VDC @ 2A:
 		550 For cutoff
 		595 For Growl
 		650 For LOW WAIL
-
-
-
 */
 
 //RTL_SDR OPTIONS
@@ -77,6 +67,9 @@ PWM VALUES INFO AT 6VDC @ 2A:
 
 //RASPBERRYPI OPTIONS
 #define PWM_PIN 					1			//PWM PIN ON PI 				***NOTE*** ON REV 1 BOARDS USE 1 AS THIS IS BCM PIN 18 ***NOTE***
+#define ACTLED_PIN 					3			//RED LED INDICATING SIREN IS ON 			
+#define DTMFLED_PIN 				0			//BLUE LED THAT FLASHES ON DTMF CHAR RECIVED
+#define ONLED_PIN 					2			//GREEN LED THAT INDICATES CODE IS RUNNING
 
 char dtmf_string[CODE_LENGHT + 1];							//DTMF CHARS CAPTURED
 int last_time = 0; 								//TIMESTAMP OF LAST DTMF TONE
@@ -94,12 +87,13 @@ int main(int argc, char *argv []) {
  	 }
 
   	pinMode (PWM_PIN, PWM_OUTPUT);				//SET PIN TO PWM PIN 		***NOTE*** BESURE TO USE A H/W PWM GPIO PIN! ***NOTE***
- 	pinMode (0, OUTPUT) ;
- 	pinMode (2, OUTPUT) ;
-	pinMode (3, OUTPUT) ;
+ 	pinMode (DTMFLED_PIN, OUTPUT) ;
+ 	pinMode (ONLED_PIN, OUTPUT) ;
+	pinMode (ACTLED_PIN, OUTPUT) ;
 
-    digitalWrite (2, HIGH);
-    digitalWrite (3, LOW);
+    digitalWrite (ONLED_PIN, HIGH);
+    digitalWrite (ACTLED_PIN, LOW);
+	digitalWrite (DTMFLED_PIN, LOW);
 
 
 	FILE *in;									//INPUT FILE
@@ -126,10 +120,10 @@ int main(int argc, char *argv []) {
 	while(fgets(buff, sizeof(buff), in)!=NULL){										//PARSE RTL_FM STDOUT BUFFER
 		if (strstr(buff, "DTMF: ") != NULL) {										//CHECK FOR DTMF MULTIMON OUTPUT ie. DTMF: 5
 			char *dtmfchar = buff + 6;
-			digitalWrite (0, HIGH) ; 
+			digitalWrite (DTMFLED_PIN, HIGH) ; 
  			DTMFhandel(dtmfchar, dtmf_count, (unsigned)time(NULL), Cancel_Var);		//HANDEL DTMF CHAR
  			delay(50);
-    		digitalWrite (0,  LOW) ;
+    		digitalWrite (DTMFLED_PIN,  LOW) ;
 		}
 	}
 	
@@ -174,19 +168,19 @@ void DTMFcheck(char *dtmf, int *Cancel_Var){
 		*Cancel_Var = 1;
 		*Cancel_Var = 0;
 		SoundSiren(1, Cancel_Var);
-		digitalWrite (3, HIGH) ;
+		digitalWrite (ACTLED_PIN, HIGH) ;
 	}else if(strcmp(dtmf,CODE_SIREN_ALERT) ==  0 ){									//CHECK FOR ALERT CODE
 		printf("Setting Sirens to ALERT\n");
 		*Cancel_Var = 1;
 		*Cancel_Var = 0;
 		SoundSiren(2, Cancel_Var);
-		digitalWrite (3, HIGH) ;
+		digitalWrite (ACTLED_PIN, HIGH) ;
 	}else if(strcmp(dtmf, CODE_SIREN_ATTACK) ==  0 ){								//CHECK FOR ATTACK CODE
 		printf("Setting Sirens to ATTACK\n");
 		*Cancel_Var = 1;
 		*Cancel_Var = 0;
 		SoundSiren(3, Cancel_Var);
-		digitalWrite (3, HIGH) ;
+		digitalWrite (ACTLED_PIN, HIGH) ;
 	}
 }
 
@@ -205,7 +199,7 @@ void SirenStop(int cur){				//WIND SIREN DOWN TO CUFOFF THEN RESET PWM
       delay(1);
     }
     pwmWrite (PWM_PIN, 0);
-    digitalWrite (3,  LOW) ;
+    digitalWrite (ACTLED_PIN,  LOW) ;
 }
 
 void* SirenGrowl(void *c){				//SOUND THE SIREN IN GROWL MODE
