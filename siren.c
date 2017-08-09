@@ -15,6 +15,9 @@ NEEDS:
 	H/W: SDR ; Adafruit DRV8871 Brushed DC Motor Driver Breakout - https://learn.adafruit.com/adafruit-drv8871-brushed-dc-motor-driver-breakout/overview 
 	S/W: RTL_FM ; MULTIMON-NG ; WIRINGPI - TO OPPERATE
 
+RADIO LICENSE: KE0EWO
+NOTE IF YOU DO NOT HAVE A HAM RADIO LICENSE CHANGE THE FREQUENCY TO A FRS OR GMRS STATION - AS THESE ARE WHAT WALKIE TALKIES USE! 
+
 OS RASPBERRIAN: 4.9.35+ #1014 Fri Jun 30 14:34:49 BST 2017 armv6l GNU/Linux
 processor       : 0
 model name      : ARMv6-compatible processor rev 7 (v6l)
