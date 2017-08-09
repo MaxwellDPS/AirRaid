@@ -8,13 +8,13 @@
 #include <softPwm.h>
 
 /*
-HACKABLE CIVIL DEFENSE SIREN POF
+HACKABLE CIVIL DEFENSE SIREN Proof Of Concept
 COPYRIGHT MAX WATERMOLEN 2017
 TESTED ON RASPBERRYPI B+ REV 1.2 (MODEL 1) 	***NOTE*** SHOULD WORK ON ALL REVISIONS ***NOTE*** 
 NEEDS: 
-	H/W: Adafruit DRV8871 Brushed DC Motor Driver Breakout - https://learn.adafruit.com/adafruit-drv8871-brushed-dc-motor-driver-breakout/overview 
+	H/W: SDR ; Adafruit DRV8871 Brushed DC Motor Driver Breakout - https://learn.adafruit.com/adafruit-drv8871-brushed-dc-motor-driver-breakout/overview 
 	S/W: RTL_FM ; MULTIMON-NG ; WIRINGPI - TO OPPERATE
-INSTALL WITH ONE COMMAND: 
+
 OS RASPBERRIAN: 4.9.35+ #1014 Fri Jun 30 14:34:49 BST 2017 armv6l GNU/Linux
 processor       : 0
 model name      : ARMv6-compatible processor rev 7 (v6l)
@@ -28,7 +28,8 @@ CPU revision    : 7
 Hardware        : BCM2835
 Revision        : 0010
 Serial          : #############
-PWM VALUES INFO AT 6VDC @ 2A:
+
+PWM VALUES INFO AT 12VDC @ 2A:
 	PWM IS ON A SCALE OF 1 TO 1024... 
 		OUR PWM MOTOR CONTROLER ONLY RESPONDS ONCE WE GET >= 550
 	SIREN VALUE NOTES:
