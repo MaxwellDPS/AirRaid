@@ -10,7 +10,8 @@ Proof of Concept Code to Build a Hackable Realistic Civil Defense Siren. To Demo
   - SDR
   - Adafruit DRV8871 Brushed DC Motor Driver Breakout - https://learn.adafruit.com/adafruit-drv8871-brushed-dc-motor-driver-breakout/overview 
   - Raspberry Pi Model 1, 2, 3
-
+  - AirRaid Siren - https://www.amazon.com/JC-Performance-Powder-Coated-Electric/dp/B01FV5ALI4/ref=sr_1_6?ie=UTF8&qid=1502299372&sr=8-6&keywords=air+raid+siren
+### Software Needed
   - RTL_SDR
   - Multimon-ng
   - wiringPi
@@ -94,6 +95,20 @@ $ sudo AirRaid
 NOTE: IF program wont run try
 ```
 $ sudo killall -9 rtl_fm
+```
+
+#### Using
+1. Tune Tranceiver to the Listen Frequency  DEFAULT: 147.48MHZ 
+2. Transmit DTMF Tones as set  in siren.c 
+
+```
+Default DTMF:
+    TONES:     5
+    TIMEOUT:   5 SEC
+    OFF:       42061
+    GROWL:     42062
+    ALERT:     42063
+    ATTACK:    42064
 ```
 
 License
