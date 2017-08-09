@@ -67,16 +67,6 @@ qmake ../multimon-ng.pro
 make
 sudo make install
 
-echo "Installing Kalibrate"
-cd ~/src
-git clone https://github.com/asdil12/kalibrate-rtl.git
-cd kalibrate-rtl
-git checkout arm_memory
-./bootstrap
-./configure
-make
-sudo make install
-
 echo "Installing WiringPi"
 sudo apt-get purge wiringPi -y
 hash -r
