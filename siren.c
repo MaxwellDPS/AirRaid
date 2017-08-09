@@ -91,17 +91,17 @@ int main(int argc, char *argv []) {
  	 }
 
   	pinMode (PWM_PIN, PWM_OUTPUT);				//SET PIN TO PWM PIN 		***NOTE*** BESURE TO USE A H/W PWM GPIO PIN! ***NOTE***
- 	pinMode (DTMFLED_PIN, OUTPUT) ;
- 	pinMode (ONLED_PIN, OUTPUT) ;
-	pinMode (ACTLED_PIN, OUTPUT) ;
+ 	pinMode (DTMFLED_PIN, OUTPUT) ;				//SET PIN TO LED PIN 
+ 	pinMode (ONLED_PIN, OUTPUT) ;				//SET PIN TO LED PIN 
+	pinMode (ACTLED_PIN, OUTPUT) ;				//SET PIN TO LED PIN 
 
-    digitalWrite (ONLED_PIN, HIGH);
-    digitalWrite (ACTLED_PIN, LOW);
-	digitalWrite (DTMFLED_PIN, LOW);
+    digitalWrite (ONLED_PIN, HIGH);				//SET STATUS LED TO ON
+    digitalWrite (ACTLED_PIN, LOW);				//SET ACTIVATION LED TO OFF
+	digitalWrite (DTMFLED_PIN, LOW);			//SET DTMF RECV LED TO OFF
 
 
 	FILE *in;									//INPUT FILE
-	extern FILE *popen();						
+	extern FILE *popen();						//POPEN DEFINE
 	char buff[BUFFER_SIZE];						//BUFFER FOR RECIVED INPUT
 	char cmd[1024];								//COMMAND CHAR BUFFER
 	char *ps = buff;
