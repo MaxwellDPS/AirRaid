@@ -115,4 +115,4 @@ Default DTMF:
 License
 ----
 
-Apache 2.0
+GNU GPL 3.0
