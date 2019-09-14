@@ -1,6 +1,6 @@
 # AirRaid
 ## Raspberry Pi Civil Defense Siren
-Proof of Concept Code to Build a Hackable Realistic Civil Defense Siren. To Demonstarate the vulerability in Millions of Real Civil Defense Sirens that work the same across the country 
+Proof of Concept Code to Build a Hackable Realistic Civil Defense Siren. To Demonstarate the vulerability in many of the Real Civil Defense Sirens in use that work the same across the country 
 
 [![N|Solid](https://static.wixstatic.com/media/632ed1_fb9a3b5268b3477caea3a865bef54a7c.png/v1/fill/w_119,h_67,al_c,usm_0.50_1.20_0.00/632ed1_fb9a3b5268b3477caea3a865bef54a7c.png)](https://maxwelldps.com)
 
