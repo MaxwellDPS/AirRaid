@@ -7,18 +7,19 @@ Proof of Concept Code to Build a Hackable Realistic Civil Defense Siren. To Demo
  Raspberry Pi Civil Defense Siren is designed to emulate Federal Signal Systems DTMF ONLY for Now.
 
 ### Hardware Needed
-  - SDR
-  - Adafruit DRV8871 Brushed DC Motor Driver Breakout - https://learn.adafruit.com/adafruit-drv8871-brushed-dc-motor-driver-breakout/overview 
-  - Raspberry Pi Model 1, 2, 3
-  - AirRaid Siren - https://www.amazon.com/JC-Performance-Powder-Coated-Electric/dp/B01FV5ALI4/ref=sr_1_6?ie=UTF8&qid=1502299372&sr=8-6&keywords=air+raid+siren
+  - SDR (If you want to use radio Activaion)
+  - Adafruit DRV8871 Brushed DC Motor Driver Breakout (PWM Motor driver) - https://learn.adafruit.com/adafruit-drv8871-brushed-dc-motor-driver-breakout/overview 
+  - Raspberry Pi Model 1, 2, 3, 4
+  - AirRaid Siren ( or What you want to drive) - https://www.amazon.com/JC-Performance-Powder-Coated-Electric/dp/B01FV5ALI4/ref=sr_1_6?ie=UTF8&qid=1502299372&sr=8-6&keywords=air+raid+siren
 ### Software Needed
-  - RTL_SDR
+  - RTL-SDR
   - Multimon-ng
-  - wiringPi
+  - wiringPi 2.52 Thank you @drogon Wiring Pi Will Be missed
 
 ### Development
 
-Want to contribute? Great!
+#### To do
+> Replace Wiring Pi for PWM :(
 
 Decoding Code Needed For:
 - Two-tone sequential
@@ -26,80 +27,74 @@ Decoding Code Needed For:
 - POCSAG
 - Digital AFSK 
 
+#### Want to contribute? Great!
+Send a Pull request
+
 ### Tech
 
 This uses a number of open source projects to work properly:
 
+> Thank you to all the projects that help make this possable
+
 * [RTL_SDR](https://github.com/keenerd/rtl-sdr) - turns your Realtek RTL2832 based DVB dongle into a SDR receiver.
 * [MULTIMON-NG](https://github.com/EliasOenal/multimon-ng) - multimon-ng a fork of multimon. It decodes digital transmission modes.
-* [WiringPi](https://github.com/WiringPi/WiringPi) - Gordon's Arduino wiring-like WiringPi Library for the Raspberry Pi (Unofficial Mirror for WiringPi bindings).
-
-And of course Raspberry Pi Civil Defense Siren itself is open source with a Public Repo on GitHub.
+* [WiringPi](http://wiringpi.com/) - WiringPi Library for the Raspberry Pi.
 
 ### Installation of Needed Software
 
-#### Building From Source
+#### Building and installing
+
+This will install RTL-SDR & multimon-ng from apt and install Wiring Pi via deb then build and install AirRaid to /opt/AirRaid
 ```
-sudo apt-get update
-sudo apt-get upgrade -y
-sudo apt-get dist-upgrade -y
-sudo apt-get -y install git gcc cmake libusb-1.0-0-dev libpulse-dev libx11-dev screen qt5-default libtool autoconf automake libfftw3-dev
-
-mkdir ~/src
-
-echo "Installing rtl_sdr"
-cd ~/src
-git clone git://git.osmocom.org/rtl-sdr.git
-cd ~/src/rtl-sdr
-mkdir build
-cd build
-cmake ../ -DINSTALL_UDEV_RULES=ON -DDETACH_KERNEL_DRIVER=ON
-make
-sudo make install
-sudo ldconfig
-
-echo "Installing multimon-ng"
-cd ~/src
-git clone https://github.com/EliasOenal/multimonNG.git
-cd ~/src/multimonNG
-mkdir build
-cd build
-qmake ../multimon-ng.pro
-make
-sudo make install
-
-echo "Installing WiringPi"
-sudo apt-get purge wiringPi -y
-hash -r
-cd ~/src
-git clone git://git.drogon.net/wiringPi
-cd wiringPi
-git pull origin
-./build
-
-cd ~/src
 git clone https://github.com/MaxwellDPS/AirRaid.git
 cd AirRaid
-gcc -lpthread -lwiringPi -o AirRaid siren.c
-sudo mkdir /opt/rpiSiren/
-sudo mv AirRaid /opt/rpiSiren/AirRaid
-sudo chmod +x /opt/rpiSiren/AirRaid
-sudo ln -s /opt/rpiSiren/AirRaid /usr/local/bin
+sudo ./install.sh
 ```
 
 #### Running
 ```
-$ sudo AirRaid
+$ AirRaid
 ```
 
-NOTE: IF program wont run try
-```
-$ sudo killall -9 rtl_fm
-```
 
 #### Using
-1. Tune Tranceiver to the Listen Frequency  DEFAULT: 147.48MHZ 
-2. Transmit DTMF Tones as set  in siren.c 
+```
+----------------------------------------------------------
+AirRaid PWM RPI Hackable Civil Defense Siren Controler
+----------------------------------------------------------
+-c, --cli for Command line Control
+-d, --daemon To daemonize MUST BE USED with -r OR  -n (Defaults to --network)
+-n, --network for UDP Control
+-r, --radio to use RTL-SDR for DTMF
+-f, --freq Set listen Frequency in HZ Default: 147480000 HZ
+
+```
+
+##### Daemon
+Dameon logs to file at /var/log/AirRaid.log
+
+To view live:
+```
+$ tail -f /var/log/AirRaid.log
+```
+
+##### Network (UDP)
+Send the following numbers in ascii to port 21234 via UDP
+
+```
+1 - Growl
+2 - ALERT
+3 - ATTACK
+4 - OFF
+99 - EXIT Useful for -d 
+```
+
+##### Radio
+1. Install RTL-SDR in RPI
+2. Tune Tranceiver to the Listen Frequency  DEFAULT: 147.48MHZ 
+3. Transmit DTMF Tones as set in siren.h
+
+> Tones can be changed in src/siren.h after install by editing src/siren.h and running src/build.sh from the AirRaid Directory
 
 ```
 Default DTMF:
@@ -115,5 +110,3 @@ License
 ----
 
 GNU GPL 3.0
-
-

@@ -1,0 +1,39 @@
+{
+  "Network":{
+    "UDP Port": 21234
+  },
+  "SDR": {
+    "FREQUENCY": "147480000",
+    "PPM_ERROR": "0",
+    "SAMPLE_RATE": "22000"
+  },
+  "SirenOPS": {
+    "CODE_LENGHT": 5,
+    "CODE_CHAR_TIMEOUT": 5,
+    "CODE_SIREN_OFF": 42061,
+    "CODE_SIREN_GROWL": 42062,
+    "CODE_SIREN_ALERT": 42063,
+    "CODE_SIREN_ATTACK": 42064
+  },
+  "SirenPWM":{
+    "SIREN_PWM_CUTOFF": 550,
+    "SIREN_PWM_GROWL": 595,
+    "SIREN_PWM_ALERT": 1024,
+    "SIREN_PWM_ATTACK_MAX": 1024,
+    "SIREN_PWM_ATTACK_MIN": 750
+  },
+  "SirenTiming":{
+    "SIREN_TIME_GROWL_REVUP": 0.10,
+    "SIREN_TIME_ALERT_REVUP": 3.417,
+    "SIREN_TIME_ATTACK_REVUP": 10.8,
+    "SIREN_TIME_ATTACK_REVDOWN": 15.4,
+    "SIREN_TIME_ATTACK_HOLD": 3000
+  },
+  "RPIOptions":{
+    "PWM_PIN": 1,
+    "ACTLED_PIN": 3,
+    "DTMFLED_PIN": 0,
+    "ONLED_PIN": 2
+  }
+}
+
