@@ -1,4 +1,4 @@
-# AirRaid
+# AirRaid v2.01
 ## Raspberry Pi Civil Defense Siren
 Proof of Concept Code to Build a Hackable Realistic Civil Defense Siren. To Demonstarate the vulerability in Millions of Real Civil Defense Sirens that work the same across the country 
 
@@ -56,6 +56,7 @@ sudo ./install.sh
 $ AirRaid
 ```
 
+### NOTE SETTINGS ARE CONTROLED VIA config.json now.. need to write up still
 
 #### Using
 ```
