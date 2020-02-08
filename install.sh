@@ -9,7 +9,7 @@ fi
 echo "Installing AirRaid"
 cd src
 echo "[*] Installing Wiring pi 2.52 see http://wiringpi.com/wiringpi-updated-to-2-52-for-the-raspberry-pi-4b/"
-wget https://project-downloads.drogon.net/wiringpi-latest.deb
+wget -q https://project-downloads.drogon.net/wiringpi-latest.deb
 dpkg -i wiringpi-latest.deb
 rm wiringpi-latest.deb
 echo "[*] Insalling Multimon-ng / rtl-sdr / json-c"
