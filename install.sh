@@ -20,7 +20,7 @@ cp ../config/config.json /opt/AirRaid
 echo "[*] Placing Symlink for /usr/bin/AirRaid"
 ln -s /opt/AirRaid/run.sh /usr/bin/AirRaid
 echo "[*] Insalling AirRaid "
-gcc airraid.c siren.c netcli.c radio.c parse.c exec.c -lpthread -ljson-c -lwiringPi -o /opt/AirRaid/AirRaid
+gcc -Wl,--allow-multiple-definition airraid.c siren.c netcli.c radio.c parse.c exec.c -lpthread -ljson-c -lwiringPi -o /opt/AirRaid/AirRaid
 echo "[+] Done run with AirRaid"
 echo "[+] Default Config at /opt/AirRaid/config.json"
 AirRaid
