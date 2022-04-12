@@ -11,6 +11,7 @@ void ACTcheck(char *dtmf, int *Cancel_Var){
 		printf("**Setting Sirens to OFF**\n");
 		*Cancel_Var = 0;
 		delay(500);
+		digitalWrite (cACTLED_PIN, LOW);
 	}else if(strcmp(dtmf, cCODE_SIREN_GROWL) ==  0 ){
 		printf("**Setting Sirens to GROWL**\n");
 		*Cancel_Var = 0;
